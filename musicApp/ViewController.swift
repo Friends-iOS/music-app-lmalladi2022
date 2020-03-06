@@ -11,6 +11,7 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
+    //creating labels for the buttons
     @IBOutlet weak var myRoundedLabel1: UIButton!
     @IBOutlet weak var myRoundedLabel2: UIButton!
     @IBOutlet weak var myRoundedLabel3: UIButton!
@@ -22,6 +23,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //making buttons appear rounded
         self.myRoundedLabel1.layer.cornerRadius = 50
         self.myRoundedLabel2.layer.cornerRadius = 50
         self.myRoundedLabel3.layer.cornerRadius = 50
@@ -29,7 +32,18 @@ class ViewController: UIViewController {
     }
 
     @IBAction func buttonKeyPressed(_ sender: UIButton) {
-       playSound(label: sender.currentTitle!)
+      
+        //pulling sound(s) from the sender by title
+        playSound(label: sender.currentTitle!)
+        
+        //reducing buttons opacity
+        sender.alpha = 0.5
+        
+        //delay of the opacity
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            sender.alpha = 1.0
+        }
+        
     }
     
 func playSound(label : String) {
